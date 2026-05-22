@@ -1180,6 +1180,7 @@ body.light-theme .clear-transfer-button:hover:not(:disabled) {
   text-align: center;
   background: transparent;
   border: 0;
+  grid-template-columns: 1fr;
 }
 
 .received-list .empty:hover {
