@@ -479,7 +479,16 @@ async function api(path, options = {}) {
     ...options,
   });
 
-  const payload = await response.json();
+  const text = await response.text();
+  let payload = {};
+
+  if (text) {
+    try {
+      payload = JSON.parse(text);
+    } catch {
+      throw new Error(`Expected JSON from ${path}, but received a non-JSON response.`);
+    }
+  }
 
   if (!response.ok) {
     throw new Error(payload.error || "Request failed");

@@ -1,0 +1,12 @@
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/rooms"
+  to = "/.netlify/functions/rooms"
+  status = 200
+
+[[redirects]]
+  from = "/api/rooms/*"
+  to = "/.netlify/functions/rooms/:splat"
+  status = 200
