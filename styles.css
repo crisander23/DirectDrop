@@ -145,7 +145,7 @@ a:focus-visible {
   max-height: calc(100dvh - 48px);
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto auto minmax(0, 1fr);
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
   gap: 16px;
   border-radius: 28px;
   border: 1px solid var(--surface-border);
@@ -156,6 +156,24 @@ a:focus-visible {
   box-shadow: var(--surface-glow);
   overflow: hidden;
 }
+
+.app-footer {
+  text-align: center;
+  font-size: 0.76rem;
+  color: var(--muted);
+  opacity: 0.65;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+  margin-top: 4px;
+}
+
+.app-footer p {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
 
 .dialog-header {
   display: grid;

@@ -317,10 +317,22 @@ async function waitForIceGatheringComplete(pc) {
   }
 
   await new Promise((resolve) => {
+    let resolved = false;
+
+    const cleanUpAndResolve = () => {
+      if (!resolved) {
+        resolved = true;
+        pc.removeEventListener("icegatheringstatechange", checkState);
+        clearTimeout(timeout);
+        resolve();
+      }
+    };
+
+    const timeout = setTimeout(cleanUpAndResolve, 2000); // 2-second timeout limit
+
     const checkState = () => {
       if (pc.iceGatheringState === "complete") {
-        pc.removeEventListener("icegatheringstatechange", checkState);
-        resolve();
+        cleanUpAndResolve();
       }
     };
 
