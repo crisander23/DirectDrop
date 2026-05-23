@@ -903,6 +903,45 @@ qrUpload.addEventListener("change", () => {
 });
 renderRoomVisual();
 
+// ── Onboarding Modal ──────────────────────────────────────────
+const onboardingModal = document.querySelector("#onboardingModal");
+const onboardingDismiss = document.querySelector("#onboardingDismiss");
+const onboardingSkip = document.querySelector("#onboardingSkip");
+
+function showOnboarding() {
+  if (!onboardingModal) return;
+  onboardingModal.classList.remove("hidden");
+  onboardingModal.setAttribute("aria-hidden", "false");
+}
+
+function dismissOnboarding() {
+  if (!onboardingModal) return;
+  if (onboardingSkip && onboardingSkip.checked) {
+    localStorage.setItem("directdrop-onboarding-seen", "1");
+  }
+  onboardingModal.classList.add("hidden");
+  onboardingModal.setAttribute("aria-hidden", "true");
+}
+
+if (onboardingDismiss) {
+  onboardingDismiss.addEventListener("click", dismissOnboarding);
+}
+
+// Show on first visit (unless user previously opted out)
+if (!localStorage.getItem("directdrop-onboarding-seen")) {
+  // Small delay so the page renders before the modal appears
+  window.setTimeout(showOnboarding, 350);
+}
+
+// "How to use" button always re-opens the modal
+const openHelpButton = document.querySelector("#openHelp");
+if (openHelpButton) {
+  openHelpButton.addEventListener("click", showOnboarding);
+}
+// ─────────────────────────────────────────────────────────────
+
+
+
 function saveRoomQr() {
   if (!roomId) {
     return;

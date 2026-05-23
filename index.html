@@ -18,14 +18,20 @@
             <h1 id="appTitle">DirectDrop</h1>
             <p>Serverless peer-to-peer file transfer. No servers. No storage. Just you.</p>
           </div>
-          <button id="themeToggle" class="theme-toggle-switch" type="button" role="switch" aria-checked="false" aria-label="Toggle theme">
-            <span class="switch-track">
-              <span class="switch-thumb">
-                <svg class="sun-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                <svg class="moon-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <div class="header-controls">
+            <button id="openHelp" class="help-button" type="button" aria-label="How to use DirectDrop">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              <span>How to use</span>
+            </button>
+            <button id="themeToggle" class="theme-toggle-switch" type="button" role="switch" aria-checked="false" aria-label="Toggle theme">
+              <span class="switch-track">
+                <span class="switch-thumb">
+                  <svg class="sun-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                  <svg class="moon-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </span>
               </span>
-            </span>
-          </button>
+            </button>
+          </div>
         </header>
 
         <section class="status-card" aria-live="polite">
@@ -237,6 +243,68 @@
         </article>
       </section>
     </main>
+
+      <!-- First-time Onboarding Modal -->
+      <section id="onboardingModal" class="modal-backdrop hidden" aria-hidden="true">
+        <article class="onboarding-modal" role="dialog" aria-modal="true" aria-labelledby="onboardingTitle">
+          <header class="onboarding-header">
+            <div class="onboarding-brand">
+              <div class="brand-mark" aria-hidden="true"><span></span></div>
+              <div>
+                <h2 id="onboardingTitle">Welcome to DirectDrop</h2>
+                <p>Serverless, private peer-to-peer file transfer. No sign-up needed.</p>
+              </div>
+            </div>
+          </header>
+
+          <div class="onboarding-steps">
+            <div class="onboarding-step">
+              <div class="step-icon step-icon--create" aria-hidden="true">1</div>
+              <div class="step-body">
+                <strong>Host: Create a room</strong>
+                <span>Click <em>Create room</em> on this PC. A 6-character room code and QR visual will be generated for you.</span>
+              </div>
+            </div>
+
+            <div class="onboarding-divider" aria-hidden="true"></div>
+
+            <div class="onboarding-step">
+              <div class="step-icon step-icon--join" aria-hidden="true">2</div>
+              <div class="step-body">
+                <strong>Other PC: Join the room</strong>
+                <span>Open DirectDrop on the other device, click <em>Join room</em>, then scan the QR code or type the 6-character code.</span>
+              </div>
+            </div>
+
+            <div class="onboarding-divider" aria-hidden="true"></div>
+
+            <div class="onboarding-step">
+              <div class="step-icon step-icon--send" aria-hidden="true">3</div>
+              <div class="step-body">
+                <strong>Drop &amp; Send</strong>
+                <span>Once connected, drag &amp; drop files or click <em>Choose file</em>, then hit <em>Send</em>. Files transfer directly — nothing is uploaded to any server.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="onboarding-tips">
+            <span class="privacy-pill">🔒 No storage</span>
+            <span class="privacy-pill">⚡ LAN direct</span>
+            <span class="privacy-pill">📂 Multi-file</span>
+          </div>
+
+          <footer class="onboarding-footer">
+            <label class="onboarding-skip-label" for="onboardingSkip">
+              <input type="checkbox" id="onboardingSkip" />
+              Don't show this again
+            </label>
+            <button id="onboardingDismiss" class="primary-action" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Got it, let's go!</span>
+            </button>
+          </footer>
+        </article>
+      </section>
 
     <script src="app.js"></script>
   </body>
